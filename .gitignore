@@ -1,0 +1,8 @@
+*.iml
+/local.properties
+.gradle
+.idea
+/build
+/captures
+libs/
+app/LICENSE.txt

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2010 - 2017, Nordic Semiconductor ASA
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without modification,
+  ~ are permitted provided that the following conditions are met:
+  ~
+  ~ 1. Redistributions of source code must retain the above copyright notice, this
+  ~    list of conditions and the following disclaimer.
+  ~
+  ~ 2. Redistributions in binary form, except as embedded into a Nordic
+  ~    Semiconductor ASA integrated circuit in a product or a software update for
+  ~    such product, must reproduce the above copyright notice, this list of
+  ~    conditions and the following disclaimer in the documentation and/or other
+  ~    materials provided with the distribution.
+  ~
+  ~ 3. Neither the name of Nordic Semiconductor ASA nor the names of its
+  ~    contributors may be used to endorse or promote products derived from this
+  ~    software without specific prior written permission.
+  ~
+  ~ 4. This software, with or without modification, must only be used with a
+  ~    Nordic Semiconductor ASA integrated circuit.
+  ~
+  ~ 5. Any software provided in binary form under this license must not be reverse
+  ~    engineered, decompiled, modified and/or disassembled.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS
+  ~ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+  ~ OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  ~ DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE
+  ~ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  ~ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+  ~ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  ~ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+  ~ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+  ~ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<ScrollView android:id="@+id/main_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="no.nordicsemi.android.nrfthingy.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ui_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/cardview_horizontal_padding"
+            android:layout_marginRight="@dimen/cardview_horizontal_padding"
+            android:layout_marginTop="@dimen/cardview_vertical_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/card_toolbar_led"
+                        android:layout_width="0dp"
+                        android:layout_height="?actionBarSize"
+                        android:layout_weight="1"
+                        app:logo="@drawable/ic_led"
+                        app:popupTheme="@style/ActionBarPopupThemeOverlay"
+                        app:title="@string/led_title"
+                        app:titleMarginStart="@dimen/card_view_toolbar_title_margin"
+                        app:titleTextAppearance="@style/Widget.Toolbar"/>
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/led_color_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/img_led_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_red"
+                        android:clickable="true"
+                        android:contentDescription="Red"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_green"
+                        android:clickable="true"
+                        android:contentDescription="Green"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_yellow"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_red"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_yellow"
+                        android:clickable="true"
+                        android:contentDescription="Yellow"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_blue"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_green"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_blue"
+                        android:clickable="true"
+                        android:contentDescription="Blue"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_purple"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_yellow"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_purple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_purple"
+                        android:clickable="true"
+                        android:contentDescription="Purple"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_cyan"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_blue"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_cyan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_cyan"
+                        android:clickable="true"
+                        android:contentDescription="Cyan"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_white"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_purple"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/img_led_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_bg_led_white"
+                        android:clickable="true"
+                        android:contentDescription="White"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img_led_cyan"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/led_rgb_color_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/img_led_rgb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:contentDescription="@string/color_title"
+                        android:focusable="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_bg_led_white"
+                        app:layout_constraintEnd_toStartOf="@+id/img_led_green"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/led_rgb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/led_controller_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:text="@string/led_intensity"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/cardview_vertical_padding"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatSeekBar
+                            android:id="@+id/seek_bar_intensity"
+                            style="@style/Widget.AppCompat.SeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="100"
+                            android:progress="20"/>
+
+                        <TextView
+                            android:id="@+id/intensity_percentage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:minWidth="50dp"
+                            android:paddingLeft="@dimen/cardview_horizontal_padding"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:text="@string/led_duration"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/cardview_vertical_padding"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatSeekBar
+                            android:id="@+id/seek_bar_delay"
+                            style="@style/Widget.AppCompat.SeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="10000"
+                            android:progress="3500"/>
+
+                        <TextView
+                            android:id="@+id/delay_ms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:minWidth="50dp"
+                            android:paddingLeft="@dimen/cardview_horizontal_padding"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/led_rgb_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/cardview_vertical_padding"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatSeekBar
+                            android:id="@+id/seek_bar_red"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="255"
+                            android:progress="60"
+                            android:progressTint="@color/red"
+                            android:thumbTint="@color/red"/>
+
+                        <TextView
+                            android:id="@+id/red_val"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:minWidth="50dp"
+                            android:paddingLeft="@dimen/cardview_horizontal_padding"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/cardview_vertical_padding"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatSeekBar
+                            android:id="@+id/seek_bar_green"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="255"
+                            android:progress="255"
+                            android:progressTint="@color/green"
+                            android:thumbTint="@color/green"/>
+
+                        <TextView
+                            android:id="@+id/green_val"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:minWidth="50dp"
+                            android:paddingLeft="@dimen/cardview_horizontal_padding"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/cardview_vertical_padding"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatSeekBar
+                            android:id="@+id/seek_bar_blue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="255"
+                            android:progress="255"
+                            android:progressTint="@color/blue"
+                            android:thumbTint="@color/blue"/>
+
+                        <TextView
+                            android:id="@+id/blue_val"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:minWidth="50dp"
+                            android:paddingLeft="@dimen/cardview_horizontal_padding"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/cardview_vertical_padding"
+                    android:background="@color/onBackground"/>
+
+                <LinearLayout
+                    style="?buttonBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/off"
+                        style="?buttonBarButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/led_off"
+                        android:textColor="@color/selectable"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/constant"
+                        style="?buttonBarButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/led_constant"
+                        android:textColor="@color/selectable"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/breathe"
+                        style="?buttonBarButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/led_breathe"
+                        android:textColor="@color/selectable"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/one_shot"
+                        style="?buttonBarButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/led_oneshot"
+                        android:textColor="@color/selectable"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/cardview_horizontal_padding"
+            android:layout_marginRight="@dimen/cardview_horizontal_padding"
+            android:layout_marginTop="@dimen/cardview_vertical_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/card_toolbar_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:logo="@drawable/ic_button"
+                    app:popupTheme="@style/ActionBarPopupThemeOverlay"
+                    app:title="@string/button_title"
+                    app:titleMarginStart="@dimen/card_view_toolbar_title_margin"
+                    app:titleTextAppearance="@style/Widget.Toolbar"/>
+
+                <LinearLayout
+                    android:id="@+id/container_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/button_state"
+                        android:textSize="@dimen/card_view_label_text_size"/>
+
+                    <TextView
+                        android:id="@+id/button_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="end"
+                        android:text="@string/button_state_unknown"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
